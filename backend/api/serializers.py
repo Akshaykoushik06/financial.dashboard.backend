@@ -1,7 +1,14 @@
 from rest_framework import serializers
-from .models import Todo
+from .models import Todo, HomePageModel
+
 
 class TodoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Todo
-        fields = ('id', 'title', 'description', 'completed')
+        fields = ('_id', 'title', 'description', 'completed')
+
+
+class HomePageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = HomePageModel
+        fields = ('_id', 'foodCardBalance')
