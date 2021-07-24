@@ -3,8 +3,8 @@ from api import views
 
 
 urlpatterns = [
-    # path('networth/', views.returnNetWorth),
+    path('homepage/', views.returnHomePageData),
     # path('foodcard/', views.getFoodCardDetails),
-    path('networth/', views.getTodos),
+    # path('networth/', views.getTodos),
     path('foodcardbalance/', views.getfoodCardBalance)
 ]

@@ -8,6 +8,8 @@ from .models import Todo, HomePageModel
 from django.http import HttpResponse, JsonResponse
 from bson import ObjectId
 
+# TODO-1: Below method can be removed
+
 
 @api_view(['GET'])
 def getfoodCardBalance(request):
@@ -117,7 +119,8 @@ class TodoView(viewsets.ModelViewSet):
     queryset = Todo.objects.all()
 
 
-def returnNetWorth(request):
+@api_view(['GET'])
+def returnHomePageData(request):
     res = {
         'netWorth': 18000,
         'assets': {
@@ -165,4 +168,7 @@ def returnNetWorth(request):
             }
         }
     }
-    return JsonResponse(res)
+    data = HomePageModel.objects.get(_id=ObjectId('60f92d5fac57d496f70f2361'))
+    serializer = HomePageSerializer(data)
+    res['assets']['foodCard']['value'] = serializer.data['foodCardBalance']
+    return Response(res, status=status.HTTP_200_OK)
