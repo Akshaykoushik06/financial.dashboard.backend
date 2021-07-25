@@ -26,5 +26,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # path('api/', include(router.urls)),
     path('api/', include('api.urls')),
-    path('foodcard/', include('foodcard.urls'))
+    path('foodcard/', include('foodcard.urls')),
+    path('creditcard/', include('creditcard.urls')),
 ]

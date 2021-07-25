@@ -17,6 +17,13 @@ def getfoodCardBalance(request):
     serializer = HomePageSerializer(data)
     return Response(serializer.data['foodCardBalance'], status=status.HTTP_200_OK)
 
+
+@api_view(['GET'])
+def getCreditCardAmount(request):
+    data = HomePageModel.objects.get(_id=ObjectId('60f92d5fac57d496f70f2361'))
+    serializer = HomePageSerializer(data)
+    return Response(serializer.data['liabilities_creditCardAmount'], status=status.HTTP_200_OK)
+
 # region
 
 
@@ -171,4 +178,5 @@ def returnHomePageData(request):
     data = HomePageModel.objects.get(_id=ObjectId('60f92d5fac57d496f70f2361'))
     serializer = HomePageSerializer(data)
     res['assets']['foodCard']['value'] = serializer.data['foodCardBalance']
+    res['liabilities']['creditCards']['dinersClub'] = serializer.data['liabilities_creditCardAmount']
     return Response(res, status=status.HTTP_200_OK)

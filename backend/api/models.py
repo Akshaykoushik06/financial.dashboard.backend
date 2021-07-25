@@ -16,4 +16,6 @@ class Todo(models.Model):
 
 class HomePageModel(models.Model):
     _id = models.ObjectIdField()
+    liabilities_creditCardAmount = models.DecimalField(
+        max_digits=10, decimal_places=2)
     foodCardBalance = models.DecimalField(max_digits=10, decimal_places=2)
