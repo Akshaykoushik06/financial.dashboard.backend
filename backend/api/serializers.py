@@ -11,4 +11,4 @@ class TodoSerializer(serializers.ModelSerializer):
 class HomePageSerializer(serializers.ModelSerializer):
     class Meta:
         model = HomePageModel
-        fields = ('_id', 'foodCardBalance')
+        fields = ('_id', 'foodCardBalance', 'liabilities_creditCardAmount')

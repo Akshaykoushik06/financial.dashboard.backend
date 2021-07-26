@@ -37,15 +37,6 @@ def getAllFoodCardTransactions(request):
     serializer = FoodCardTransactionsSerializer(txns, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
 
-# The below method is not needed anymore as it is handled on the frontend
-
-
-@api_view(['GET'])
-def getTxnById(request, id):
-    txn = FoodCardTransactionsModel.objects.get(_id=ObjectId(id))
-    serializer = FoodCardTransactionsSerializer(txn)
-    return Response(serializer.data, status=status.HTTP_200_OK)
-
 
 @api_view(['PUT'])
 def editTxn(request):
@@ -74,7 +65,7 @@ def editTxn(request):
 
 @api_view(['POST'])
 def createNewTxn(request):
-    # check if credit/debit and remove the credit field from request
+    # check if credit/debit
     credit = request.data['credit']
 
     updateWalletBalance(credit, float(request.data['amount']))
@@ -95,3 +86,13 @@ def deleteTxn(request):
         not oldData.data['credit'], float(oldData.data['amount']))
     txn.delete()
     return Response('TXN DELETE - SUCCESS', status=status.HTTP_200_OK)
+
+
+# The below method is not needed anymore as it is handled on the frontend
+
+
+@api_view(['GET'])
+def getTxnById(request, id):
+    txn = FoodCardTransactionsModel.objects.get(_id=ObjectId(id))
+    serializer = FoodCardTransactionsSerializer(txn)
+    return Response(serializer.data, status=status.HTTP_200_OK)

@@ -6,5 +6,6 @@ urlpatterns = [
     path('homepage/', views.returnHomePageData),
     # path('foodcard/', views.getFoodCardDetails),
     # path('networth/', views.getTodos),
-    path('foodcardbalance/', views.getfoodCardBalance)
+    path('foodcardbalance/', views.getfoodCardBalance),
+    path('creditcardamount/', views.getCreditCardAmount),
 ]
