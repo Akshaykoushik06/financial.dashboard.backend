@@ -15,15 +15,19 @@ def updateWalletBalance(isCredit, requestAmount):
     # fetch the current wallet balance
     dbModel = HomePageModel.objects.get(
         _id=ObjectId('60f92d5fac57d496f70f2361'))
+    serializer = HomePageSerializer(dbModel)
+    fields = ['liabilities_creditCardAmount',
+              'icici_balance', 'hdfc_balance', 'iob_balance', 'canara_balance']
+    newData = {}
+    for field in fields:
+        newData[field] = serializer.data[field]
     oldBalance = float(HomePageSerializer(
         dbModel).data['foodCardBalance'])
 
     # add/subtract from the old balance
     newBalance = (
         oldBalance + requestAmount) if isCredit else (oldBalance - requestAmount)
-    newData = {
-        'foodCardBalance': newBalance
-    }
+    newData['foodCardBalance'] = newBalance
     # update the wallet balance
     homePageSerializer = HomePageSerializer(
         instance=dbModel, data=newData)

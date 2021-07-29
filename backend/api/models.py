@@ -16,6 +16,10 @@ class Todo(models.Model):
 
 class HomePageModel(models.Model):
     _id = models.ObjectIdField()
+    icici_balance = models.DecimalField(max_digits=10, decimal_places=2)
+    hdfc_balance = models.DecimalField(max_digits=10, decimal_places=2)
+    iob_balance = models.DecimalField(max_digits=10, decimal_places=2)
+    canara_balance = models.DecimalField(max_digits=10, decimal_places=2)
     liabilities_creditCardAmount = models.DecimalField(
         max_digits=10, decimal_places=2)
     foodCardBalance = models.DecimalField(max_digits=10, decimal_places=2)

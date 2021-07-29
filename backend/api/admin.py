@@ -9,7 +9,8 @@ class TodoAdmin(admin.ModelAdmin):
 
 
 class HomePageAdmin(admin.ModelAdmin):
-    list_display = ('foodCardBalance',)
+    list_display = ('foodCardBalance', 'liabilities_creditCardAmount',
+                    'icici_balance', 'hdfc_balance', 'iob_balance', 'canara_balance')
 
 
 admin.site.register(Todo, TodoAdmin)
