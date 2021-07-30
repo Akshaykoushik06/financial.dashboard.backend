@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'bankacc',
     'loans',
     'taxes',
+    'pf',
 ]
 
 MIDDLEWARE = [
