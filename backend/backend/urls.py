@@ -29,4 +29,5 @@ urlpatterns = [
     path('foodcard/', include('foodcard.urls')),
     path('creditcard/', include('creditcard.urls')),
     path('bankacc/', include('bankacc.urls')),
+    path('loans/', include('loans.urls')),
 ]

@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'api',
     'foodcard',
     'creditcard',
-    'bankacc'
+    'bankacc',
+    'loans',
 ]
 
 MIDDLEWARE = [
