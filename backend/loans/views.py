@@ -13,13 +13,14 @@ from api.serializers import HomePageSerializer
 import datetime
 
 
-@api_view(['GET'])
-def getAllTxns(request):
+def getLoanAmounts():
     res = {
         'amount_remaining': 110808.00,
         'months_remaining': 24,
         'txns': [],
     }
+
+    amount_paid_so_far = 0.00
 
     txns = LoansTransactionsModel.objects.all().order_by('-date')
     serializer = LoansTransactionsSerializer(txns, many=True)
@@ -29,7 +30,14 @@ def getAllTxns(request):
     for txn in serializer.data:
         res['months_remaining'] -= 1
         res['amount_remaining'] -= float(txn['amount'])
+        amount_paid_so_far += float(txn['amount'])
 
+    return amount_paid_so_far, res
+
+
+@api_view(['GET'])
+def getAllTxns(request):
+    _, res = getLoanAmounts()
     return Response(res, status=status.HTTP_200_OK)
 
 

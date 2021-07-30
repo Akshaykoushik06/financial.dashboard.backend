@@ -13,8 +13,7 @@ from api.serializers import HomePageSerializer
 import datetime
 
 
-@api_view(['GET'])
-def getAllTxns(request):
+def getTaxes():
     res = {
         'tax_for_FY': 50000.00,
         'tax_paid_so_far': 0.00,
@@ -31,7 +30,13 @@ def getAllTxns(request):
         res['tax_paid_so_far'] += float(txn['amount'])
 
     res['remaining_tax'] = res['tax_for_FY'] - res['tax_paid_so_far']
-    return Response(res, status=status.HTTP_200_OK)
+
+    return res
+
+
+@api_view(['GET'])
+def getAllTxns(request):
+    return Response(getTaxes(), status=status.HTTP_200_OK)
 
 
 @api_view(['POST'])

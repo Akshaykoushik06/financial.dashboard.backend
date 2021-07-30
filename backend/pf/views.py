@@ -13,13 +13,11 @@ from api.serializers import HomePageSerializer
 import datetime
 
 
-@api_view(['GET'])
-def getAllTxns(request):
+def getPFBalanceAndTxns():
     res = {
         'balance': 0.00,
         'txns': [],
     }
-
     txns = PFTransactionsModel.objects.all().order_by('-date')
     serializer = PFTransactionsSerializer(txns, many=True)
 
@@ -28,7 +26,12 @@ def getAllTxns(request):
     for txn in serializer.data:
         res['balance'] += float(txn['amount'])
 
-    return Response(res, status=status.HTTP_200_OK)
+    return res
+
+
+@api_view(['GET'])
+def getAllTxns(request):
+    return Response(getPFBalanceAndTxns(), status=status.HTTP_200_OK)
 
 
 @api_view(['POST'])
