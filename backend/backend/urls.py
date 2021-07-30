@@ -30,4 +30,5 @@ urlpatterns = [
     path('creditcard/', include('creditcard.urls')),
     path('bankacc/', include('bankacc.urls')),
     path('loans/', include('loans.urls')),
+    path('incometax/', include('taxes.urls'))
 ]
